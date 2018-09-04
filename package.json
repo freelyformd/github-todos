@@ -1,0 +1,49 @@
+{
+  "name": "github-todos",
+  "version": "1.1.3",
+  "main": "dist/main.js",
+  "publish": {
+    "public": true
+  },
+  "scripts": {
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "patch": "release-it -i patch -n",
+    "feature": "release-it -i minor -n",
+    "breaking": "release-it -i major -n",
+    "start": "ts-node src/main.ts --dir examples",
+    "build": "tsc"
+  },
+  "author": "epicallan.al@gmail.com",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "github"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Akilihub/github-todos.git"
+  },
+  "dependencies": {
+    "ramda": "0.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "9.4.7",
+    "@types/ramda": "0.25.20",
+    "git-pre-hooks": "1.2.0",
+    "release-it": "7.2.1",
+    "ts-node": "^5.0.1",
+    "tslint": "5.9.1",
+    "typescript": "2.7.2"
+  },
+  "bin": {
+    "js-to-ts": "index.js"
+  },
+  "git-pre-hooks": {
+    "pre-push": [
+      "npm run lint",
+      "npm run build"
+    ]
+  }
+}
