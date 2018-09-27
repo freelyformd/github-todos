@@ -1,23 +1,35 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "target": "es5",
-      "sourceMap": false,
-      "strict": true,
-      "lib": ["es2017", "esnext.asynciterable", "dom"],
-      "experimentalDecorators": true,
-      "typeRoots": ["node_modules/@types", "types"],
-      "declaration": true,
-      "noImplicitAny": false,
-      "noUnusedLocals": true,
-      "outDir": "dist",
-      "removeComments": true
+  "compilerOptions": {
+    "target": "es6",
+    "alwaysStrict": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    // "declarationMap": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "baseUrl": ".",
+    "declarationDir": "dist",
+    "outDir": "dist",
+    "paths": {
+      "*": [
+        "node_modules/*"
+      ]
     },
-    "exclude": [
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "exclude": [
       "node_modules",
       "dist"
     ],
-    "include": [
-        "src"
-    ]
-  }
+  "include": [
+    "src/**/*"
+  ]
+}

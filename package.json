@@ -1,46 +1,62 @@
 {
-  "name": "github-todos",
-  "version": "0.0.1",
-  "main": "dist/main.js",
-  "publish": {
-    "public": true
-  },
+  "name": "probot",
+  "version": "1.0.0",
+  "description": "A Probot app",
+  "author": "akilihub <info@akilihub.com>",
+  "license": "ISC",
+  "repository": "https://github.com/lubegasimon/probot.git",
+  "homepage": "https://github.com/lubegasimon/probot",
+  "bugs": "https://github.com/lubegasimon/probot/issues",
+  "keywords": [
+    "probot",
+    "github",
+    "probot-app"
+  ],
   "scripts": {
-    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "dev": "nodemon",
+    "build": "tsc",
     "patch": "release-it -i patch -n",
     "feature": "release-it -i minor -n",
     "breaking": "release-it -i major -n",
-    "start": "ts-node src/main.ts --dir examples",
-    "build": "tsc"
-  },
-  "author": "epicallan.al@gmail.com",
-  "license": "ISC",
-  "publishConfig": {
-    "access": "public"
-  },
-  "keywords": [
-    "github"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Akilihub/github-todos.git"
+    "start": "npm run build && probot run ./dist/main.js",
+    "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
+    "test": "jest",
+    "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
-    "ramda": "0.25.0"
+    "probot": "^7.0.0"
   },
   "devDependencies": {
-    "@types/node": "9.4.7",
-    "@types/ramda": "0.25.20",
-    "git-pre-hooks": "1.2.0",
-    "release-it": "7.2.1",
-    "ts-node": "^5.0.1",
-    "tslint": "5.9.1",
-    "typescript": "2.7.2"
+    "@types/jest": "^23.3.2",
+    "jest": "^22.4.3",
+    "nodemon": "^1.17.2",
+    "release-it": "^7.6.1",
+    "smee-client": "^1.0.2",
+    "ts-jest": "^23.10.2",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.3"
   },
-  "git-pre-hooks": {
-    "pre-push": [
-      "npm run lint",
-      "npm run build"
+  "engines": {
+    "node": ">= 8.3.0"
+  },
+  "jest": {
+    "transform": {
+      ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "testEnvironment": "node",
+    "testRegex": ".*\\.test\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
+  },
+  "nodemonConfig": {
+    "exec": "npm start",
+    "watch": [
+      "src"
     ]
   }
 }

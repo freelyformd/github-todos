@@ -1,12 +1,14 @@
-# Github TODO and FIXME issues creator
+# probot
 
-Features
-___
+> A GitHub App built with [Probot](https://probot.github.io) that A Probot app
 
-- Create github issues out of TODO and FixMe code comments.
+## Setup
 
-- Add code line and file in issue description
+```sh
+# Install dependencies
+yarn
 
-- Assign current person who has committed this TODO comment to the generated issue.
+# Run the bot
+yarn start
+```
 
-- Add TODO label to created issue.
