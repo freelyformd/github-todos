@@ -48,7 +48,7 @@
     node-fetch "^2.1.1"
     url-template "^2.0.8"
 
-"@octokit/rest@^15.11.0":
+"@octokit/rest@^15.11.0", "@octokit/rest@^15.12.1":
   version "15.12.1"
   resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-15.12.1.tgz#f0dc169f336f8fd05ae8d8c83371b2f0c0dd8de1"
   dependencies:
