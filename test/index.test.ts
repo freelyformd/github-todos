@@ -1,6 +1,5 @@
 import "jest";
 import { Application } from "probot";
-// Requiring our app implementation
 import  myProbotApp  from "../src/app/main";
 import repoPushPayload from "./fixtures/push.json";
 

@@ -1,0 +1,11 @@
+{
+    "git.ignoreLimitWarning": true,
+    "cSpell.words": [
+        "Probot",
+        "Probot's",
+        "repos"
+    ],
+    "files.exclude": {
+        "**/node_modules": true
+    }
+}

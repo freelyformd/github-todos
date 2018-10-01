@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parsed data tests should return modified parsed data 1`] = `
+Array [
+  Object {
+    "commentText": "@aleku399 look into why this was causing bars not to show",
+    "fileName": "README.md",
+    "keyWord": "TODO",
+    "lineNumber": Object {
+      "end": Object {
+        "column": 77,
+        "line": 11,
+      },
+      "start": Object {
+        "column": 12,
+        "line": 11,
+      },
+    },
+  },
+  Object {
+    "commentText": "alex testing 1 on the 2s",
+    "fileName": "README.md",
+    "keyWord": "FIXME",
+    "lineNumber": Object {
+      "end": Object {
+        "column": 45,
+        "line": 14,
+      },
+      "start": Object {
+        "column": 12,
+        "line": 14,
+      },
+    },
+  },
+]
+`;

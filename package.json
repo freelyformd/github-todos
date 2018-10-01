@@ -24,12 +24,12 @@
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
+    "esprima-extract-comments": "^1.1.0",
     "probot": "^7.0.0"
   },
   "devDependencies": {
-    "@octokit/rest": "^15.12.1",
-    "@octokit/webhooks": "^5.0.2",
     "@types/jest": "^23.3.2",
+    "@types/node": "^10.11.3",
     "jest": "^22.4.3",
     "nodemon": "^1.17.2",
     "release-it": "^7.6.1",
