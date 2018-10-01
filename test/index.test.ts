@@ -2,7 +2,7 @@ import "jest";
 import { Application } from "probot";
 // Requiring our app implementation
 import  myProbotApp  from "../src/app/main";
-import repoCreatedPayload from "./fixtures/repos.create.json";
+import repoPushPayload from "./fixtures/push.json";
 
 describe("My Probot app", () => {
   let app;
@@ -27,7 +27,7 @@ describe("My Probot app", () => {
     // Simulates delivery of an issues.opened webHook
     await app.receive({
       name: "push",
-      payload: repoCreatedPayload
+      payload: repoPushPayload
     });
 
     // This test passes if the code in your main.ts file calls `context.github.issues.createComment`
