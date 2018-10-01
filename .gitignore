@@ -13,7 +13,7 @@ npm-debug*
 
 # logs
 *.log
-
+.env 
 # coverage
 .nyc_output
 coverage
