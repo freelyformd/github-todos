@@ -5,7 +5,7 @@
 import getChangedFiles from "../lib/github/changedFilesList";
 
 export interface Context {
-  github: any;
+  github: any; // an object with octokit methods
   payload: any;
   logger: any;
   issue: any; // methods
