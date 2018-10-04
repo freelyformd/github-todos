@@ -8,7 +8,6 @@
     "removeComments": true,
     "declaration": true,
     "esModuleInterop": true,
-    // "declarationMap": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "noImplicitAny": false,

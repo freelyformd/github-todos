@@ -27,3 +27,4 @@ export default function main (app: any): void {
       return context.github.issues.createComment(postIssue);
     });
 }
+

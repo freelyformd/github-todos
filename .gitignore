@@ -3,7 +3,6 @@ dist
 .output
 .out
 .next
-lib
 build
 
 # dependencies
@@ -27,3 +26,5 @@ test/**/out
 #editors
 .idea
 .vscode
+
+*.pem
