@@ -24,4 +24,4 @@
         comments: issue.comments
       };
     });
- };
+ }
