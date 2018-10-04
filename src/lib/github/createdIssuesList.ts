@@ -7,7 +7,7 @@ export interface OpenIssue {
     id: string; // issue id
 }
 
-export default async function appCreatedIssues (context: any): Promise<OpenIssue[]> {
+export default async function getAppCreatedIssues (context: any): Promise<OpenIssue[]> {
     const octokit = context.github;
 
     const opts = {
@@ -17,9 +17,9 @@ export default async function appCreatedIssues (context: any): Promise<OpenIssue
 
     const result = await octokit.issues.getAll(opts);
     return result.issues.map(issue => {
-        return {
-            title: issue.title,
-            id: issue.number
-        };
+      return {
+        title: issue.title,
+        id: issue.number
+      };
     });
 }
