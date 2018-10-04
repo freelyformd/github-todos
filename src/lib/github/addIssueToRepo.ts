@@ -1,10 +1,10 @@
 /**
- *  API Function that adds an issue with comments to a repository 
+ *  API Function that adds an issue with comments to a repository
  */
 
  export interface IssueWithComments {
-    title: string,
-    comments: string[]
+    title: string;
+    comments: string[];
  }
 
  export default async function addIssueToRepo(context: any): Promise<IssueWithComments[]> {
@@ -22,6 +22,6 @@
       return {
         title: issue.title,
         comments: issue.comments
-      }
-    })
- }
+      };
+    });
+ };
