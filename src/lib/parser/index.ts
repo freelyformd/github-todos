@@ -9,14 +9,14 @@ type KeyWord = "TODO"  | "FIXME";
 
 const keyWords: KeyWord[] = ["TODO", "FIXME"];
 
-interface RepoIssues {
+export interface RepoIssues {
    commentText: string;
-   lineNumber: number;
+   lineNumber?: number;
    keyWord: KeyWord;
-   fileName: string;
+   fileName?: string;
 }
 
-interface GithuBlob {
+export interface GithuBlob {
     type: string;
     content: string;
     path: string;
