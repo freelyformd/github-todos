@@ -24,8 +24,10 @@
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
+    "@types/ramda": "^0.25.39",
     "esprima-extract-comments": "^1.1.0",
-    "probot": "^7.0.0"
+    "probot": "^7.0.0",
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.2",
