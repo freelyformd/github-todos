@@ -1,13 +1,14 @@
 /**
  * extracts a list of open issues created by the app
  */
+import { Context } from "./types";
 
 export interface OpenIssue {
     title: string; // issue title
     id: string; // issue id
 }
 
-export default async function getAppCreatedIssues (context: any): Promise<OpenIssue[]> {
+export default async function getAppCreatedIssues (context: Context): Promise<OpenIssue[]> {
     const octokit = context.github;
 
     const opts = {

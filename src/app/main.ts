@@ -3,14 +3,8 @@
  * @param {import('probot').Application} app - Probot's Application class.
  */
 import getChangedFiles from "../lib/github/changedFilesList";
+import { Context } from "../lib/github/types";
 
-export interface Context {
-  github: any; // an object with octokit methods
-  payload: any;
-  logger: any;
-  issue: any; // methods
-  repo: any;  // methods
-}
 
 export default function main (app: any): void {
     app.log("Cheers, the app runs on a server!");
