@@ -11,9 +11,9 @@ const keyWords: KeyWord[] = ["TODO", "FIXME"];
 
 export interface RepoIssue {
    commentText: string;
-   lineNumber?: number;
+   lineNumber: number;
    keyWord: KeyWord;
-   fileName?: string;
+   fileName: string;
 }
 
 export interface GithuBlob {
