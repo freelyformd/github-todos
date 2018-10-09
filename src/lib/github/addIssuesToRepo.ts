@@ -1,8 +1,8 @@
 /**
- *  API Function that adds an issue with comments to a repository
+ *  API Function that adds issues with comments to a repository
  */
 
- export interface Issue {
+export interface Issue {
     title: string;
     body: string[];
  }
@@ -26,4 +26,3 @@
     return result;
     console.log("result", result );
  }
-
