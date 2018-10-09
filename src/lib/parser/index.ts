@@ -9,14 +9,14 @@ type KeyWord = "TODO"  | "FIXME";
 
 const keyWords: KeyWord[] = ["TODO", "FIXME"];
 
-interface RepoIssues {
+export interface RepoIssue {
    commentText: string;
    lineNumber: number;
    keyWord: KeyWord;
    fileName: string;
 }
 
-interface GithuBlob {
+export interface GithuBlob {
     type: string;
     content: string;
     path: string;
@@ -40,12 +40,12 @@ const replaceWord = (str: string): string => {
     return str.replace(regex, "").trim();
 };
 
-function parseData (data: GithuBlob): RepoIssues[] {
+function parseData (data: GithuBlob): RepoIssue[] {
     const extractedFile: ExtractedBlob[] = extract(data.content);
     return extractedFile
     .map( (obj: ExtractedBlob) => ({
         commentText: replaceWord(obj.value),
-        lineNumber: obj.loc,
+        lineNumber: obj.loc.end.line,
         keyWord: findWord(obj.value) as KeyWord,
         fileName: data.name
     }))

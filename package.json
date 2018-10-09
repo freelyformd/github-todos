@@ -25,11 +25,13 @@
   },
   "dependencies": {
     "esprima-extract-comments": "^1.1.0",
-    "probot": "^7.0.0"
+    "probot": "^7.0.0",
+    "ramda": "^0.25.0"
   },
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/node": "^10.11.3",
+    "@types/ramda": "^0.25.39",
     "jest": "^22.4.3",
     "nodemon": "^1.17.2",
     "release-it": "^7.6.1",

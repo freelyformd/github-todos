@@ -1,13 +1,14 @@
 /**
  * Gets files that have changed during a commit
  */
+import { Context } from "./types";
 
 export interface ModifiedFile {
   name: string;
   url: string;
 }
 
-export default async function getChangedFiles(context: any): Promise<ModifiedFile[]> {
+export default async function getChangedFiles(context: Context): Promise<ModifiedFile[]> {
   const repo = context.payload.repository.name;
   // could be owner.name
   const owner = context.payload.repository.owner.login;
