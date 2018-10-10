@@ -7,7 +7,7 @@ export interface Issue {
   body: string[];
 }
 
-export default async function addIssuesToRepo(context: any, issues: Issue[] ): Promise<any> {
+export default async function addIssuesToRepo(context: any, issues: Issue[] ): Promise<any[]> {
   const octokit = context.github;
   const owner = context.payload.repository.owner.login;
   const repo = context.payload.repository.name;
