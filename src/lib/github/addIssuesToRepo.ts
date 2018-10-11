@@ -3,7 +3,7 @@
  */
 
 import { Context } from "./types";
-import { getBasicRepoProps } from "./util";
+import { getBasicRepoProps } from "./utils";
 
 export interface Issue {
   title: string;
