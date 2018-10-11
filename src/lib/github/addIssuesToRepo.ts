@@ -2,21 +2,23 @@
  *  API Function that adds issues with comments to a repository
  */
 
+import { Context } from "./types";
+import { getBasicRepoProps } from "./util";
+
 export interface Issue {
   title: string;
   body: string[];
 }
 
-export default async function addIssuesToRepo(context: any, issues: Issue[] ): Promise<any[]> {
+export default async function addIssuesToRepo(context: Context, issues: Issue[] ): Promise<any[]> {
   const octokit = context.github;
-  const owner = context.payload.repository.owner.login;
-  const repo = context.payload.repository.name;
+  const repoPropsObj = getBasicRepoProps (context);
     const promises: Array<Promise<any>> = issues.map( async (issue: Issue) => {
       const title = issue.title;
       const body = issue.body;
       const fields = {
-        owner,
-        repo,
+        owner: repoPropsObj.owner,
+        repo: repoPropsObj.repo,
         title,
         body
       };
