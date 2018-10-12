@@ -2,6 +2,7 @@
  * Gets files that have changed during a commit
  */
 import { Context } from "./types";
+import { getBasicRepoProps } from "./utils";
 
 export interface ModifiedFile {
   name: string;
@@ -9,11 +10,14 @@ export interface ModifiedFile {
 }
 
 export default async function getChangedFiles(context: Context): Promise<ModifiedFile[]> {
-  const repo = context.payload.repository.name;
-  // could be owner.name
-  const owner = context.payload.repository.owner.login;
+  const { owner, repo } = getBasicRepoProps (context);
   const sha = context.payload.head_commit.id;
   const octokit = context.github;
-  const result = await octokit.repos.getCommit({owner, repo, sha});
+  const fields = {
+    owner,
+    repo,
+    sha
+  };
+  const result = await octokit.repos.getCommit( fields);
   return result.files.map(file => ({name: file.filename, url: file.blob_url}));
 }
