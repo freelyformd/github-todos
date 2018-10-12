@@ -10,12 +10,12 @@ export interface ModifiedFile {
 }
 
 export default async function getChangedFiles(context: Context): Promise<ModifiedFile[]> {
-  const repoPropsObj = getBasicRepoProps (context);
+  const { owner, repo } = getBasicRepoProps (context);
   const sha = context.payload.head_commit.id;
   const octokit = context.github;
   const fields = {
-    owner: repoPropsObj.owner,
-    repo: repoPropsObj.repo,
+    owner,
+    repo,
     sha
   };
   const result = await octokit.repos.getCommit( fields);

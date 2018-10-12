@@ -12,13 +12,13 @@ export interface Issue {
 
 export default async function addIssuesToRepo(context: Context, issues: Issue[] ): Promise<any[]> {
   const octokit = context.github;
-  const repoPropsObj = getBasicRepoProps (context);
+  const { owner, repo } = getBasicRepoProps (context);
     const promises: Array<Promise<any>> = issues.map( async (issue: Issue) => {
       const title = issue.title;
       const body = issue.body;
       const fields = {
-        owner: repoPropsObj.owner,
-        repo: repoPropsObj.repo,
+        owner,
+        repo,
         title,
         body
       };
