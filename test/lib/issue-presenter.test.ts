@@ -21,7 +21,7 @@ const data: RepoIssue[] = [
       "lineNumber": 11
     }
   ];
-  describe("parsed data tests", () => {
+describe("parsed data tests", () => {
     it.only("should return modified parsed data", () => {
       const _data = createIssueWithComments(data);
       expect(_data).toMatchSnapshot();
