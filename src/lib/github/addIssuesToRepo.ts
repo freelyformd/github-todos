@@ -7,7 +7,7 @@ import { getBasicRepoProps } from "./utils";
 
 export interface Issue {
   title: string;
-  body: string[];
+  body: string;
 }
 
 export default async function addIssuesToRepo(context: Context, issues: Issue[] ): Promise<any[]> {
