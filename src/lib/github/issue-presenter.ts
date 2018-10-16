@@ -10,7 +10,7 @@ interface IssueWithComments {
    comments: Comment[];
 }
 
-export interface Issue {
+interface Issue {
   title: Title;
   body: Body;
 }

@@ -11,6 +11,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "noImplicitAny": false,
+    "allowUnreachableCode": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "baseUrl": ".",
