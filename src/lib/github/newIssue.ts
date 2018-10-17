@@ -1,3 +1,4 @@
+import * as R from "ramda";
 import formattedIssueComment from "./issue-presenter";
 import { Context } from "./types";
 import { RepoIssue } from "../parser";
@@ -7,24 +8,21 @@ interface Issue {
   body: string;
 }
 
-export default async function getNewIssuesFromSource(context: Context, data: RepoIssue[]) {
-  const repo = context.payload.repository.name;
-  // could be owner.name
-  const owner = context.payload.repository.owner.login;
+export default async function getNewIssuesFromSource(context: Context, data: RepoIssue[]): Promise<Issue[]> {
   const octokit = context.github;
-  octokit.authenticate({repo, owner});
-  const result = await octokit.issues.getAll({filter: "all"});
+  const result = await octokit.issues.getAll({filter: "all",  state: "open"});
   const oldIssues: Issue[] = result.files.map(objIssue => ({title: objIssue.title, body: objIssue.body}));
   const newIssues: Issue[] = formattedIssueComment(data);
-  const diff: Issue[] =   oldIssues.map(issue => {
-          const issueArr: string[] = issue.body.split(`\n`);
-          for (const obj of newIssues) {
-            const objIssArr = obj.body.split(`\n`);
-            for (const valIssue of objIssArr) {
-                if (!issueArr.includes(valIssue)) return issueArr.push(valIssue);
+  const groupedObj = R.groupBy(obj => obj.title, newIssues);
+  return Object.keys(groupedObj).map( (key: string) => {
+        const bodyArr = oldIssues.map(old => {
+          if (key === old.title) {
+            const newIssueArr: string[] = groupedObj[key][0].body.split(`\n`);
+            const oldIssueArr: string[] = old.body.split(`\n`);
+            const filteredArr: string[] = oldIssueArr.filter( (iss: string) => newIssueArr.indexOf(iss) === -1);
+            return [...newIssueArr, ...filteredArr];
             }
-          }
-          return {title: issue.title, body: issueArr.join(`\n`)};
+          });
+        return {title: key, body: bodyArr.join(`\n`)};
       });
-  return diff;
 }
