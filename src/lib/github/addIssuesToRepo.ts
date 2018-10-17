@@ -7,13 +7,13 @@ import { getBasicRepoProps } from "./utils";
 
 export interface Issue {
   title: string;
-  body: string[];
+  body: string;
 }
 
 export default async function addIssuesToRepo(context: Context, issues: Issue[] ): Promise<any[]> {
   const octokit = context.github;
   const { owner, repo } = getBasicRepoProps (context);
-    const promises: Array<Promise<any>> = issues.map( async (issue: Issue) => {
+  const promises: Array<Promise<any>> = issues.map( async (issue: Issue) => {
       const title = issue.title;
       const body = issue.body;
       const fields = {
@@ -22,7 +22,7 @@ export default async function addIssuesToRepo(context: Context, issues: Issue[] 
         title,
         body
       };
-     return await octokit.issues.create(fields);
+      return await octokit.issues.create(fields);
     });
   return Promise.all(promises);
 }
