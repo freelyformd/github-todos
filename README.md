@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Akilihub/github-todos.svg?style=svg)](https://circleci.com/gh/Akilihub/github-todos)
+[![CircleCI](https://circleci.com/gh/freelyformd/github-todos.svg?style=svg)](https://circleci.com/gh/freelyformd/github-todos)
 
 # Github App that creates issue's out of TODO and FIXME comments
 
