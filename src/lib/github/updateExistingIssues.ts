@@ -19,20 +19,20 @@ export default async function updateExistingIssues (context: Context, newIssue: 
   const results = await octokit.issues.getAll(options);
 
   results.issues.forEach( async (issue: Issue) => {
-  if (issue.title === newIssue.title ) {
+    if (issue.title === newIssue.title ) {
 
-    const issueNumber = context.payload.issue.number;
-    const { owner, repo } = getBasicRepoProps (context);
+      const issueNumber = context.payload.issue.number;
+      const { owner, repo } = getBasicRepoProps (context);
 
-    const fields = {
+      const fields = {
       owner,
       repo,
       issueNumber,
       body: newIssue.body
     };
 
-    await octokit.issues.createComment(fields);
-  }
+      await octokit.issues.createComment(fields);
+    }
   });
 
 }
