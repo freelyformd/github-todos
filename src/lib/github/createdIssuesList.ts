@@ -1,6 +1,7 @@
 /**
  * extracts a list of open issues created by the app
  */
+
 import { Context } from "./types";
 
 export interface OpenIssue {
