@@ -6,9 +6,7 @@ import { Context } from "./types";
 import { Issue } from "./addIssuesToRepo";
 import { getBasicRepoProps } from "./utils";
 
-type Issues = Issue[];
-
-export default async function updateExistingIssues (context: Context, newIssue: Issue): Promise<Issues> {
+export default async function updateExistingIssues (context: Context, newIssue: Issue): Promise<void> {
   const octokit = context.github;
 
   const options = {
@@ -20,7 +18,7 @@ export default async function updateExistingIssues (context: Context, newIssue: 
 
   const results = await octokit.issues.getAll(options);
 
-  return results.issues.forEach( async (issue: Issue) => {
+  results.issues.forEach( async (issue: Issue) => {
   if (issue.title === newIssue.title ) {
 
     const issueNumber = context.payload.issue.number;
@@ -33,7 +31,7 @@ export default async function updateExistingIssues (context: Context, newIssue: 
       body: newIssue.body
     };
 
-    return await octokit.issues.createComment(fields);
+    await octokit.issues.createComment(fields);
   }
   });
 
