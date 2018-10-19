@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`all issues data tests should return blob data 1`] = `
+Array [
+  Object {
+    "body": "
+-[ ]README.md: 14 alex testing 1 on the 2s,      -[ ]README.md: 14  see u,      -[ ]README.md: 15 look at u,      -[ ]README.md: 10 ok",
+    "title": "FIXMEs from source code",
+  },
+  Object {
+    "body": "-[ ]README.md: 12 @aleku399 look into why this was causing bars not to show,  -[ ]README.md: 11 test,  -[ ]README.md: 40 check,  -[ ]README.md: 40 see,  -[ ]README.md: 10 niggas in paris,  -[ ]README.md: 14 whistle
+",
+    "title": "TODOs from source code",
+  },
+]
+`;
