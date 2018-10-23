@@ -1,5 +1,5 @@
 import "jest";
-import formattedIssueComment from "../../src/lib/github/issue-presenter";
+import formattedIssueComment from "../../src/lib/github/issuePresenter";
 import { RepoIssue } from "../../src/lib/parser";
 const data: RepoIssue[] = [
     {
@@ -22,7 +22,7 @@ const data: RepoIssue[] = [
     }
   ];
 describe("parsed data tests", () => {
-    it.only("should return modified parsed data", () => {
+    it("should return modified parsed data", () => {
       const _data = formattedIssueComment(data);
       expect(_data).toMatchSnapshot();
     });

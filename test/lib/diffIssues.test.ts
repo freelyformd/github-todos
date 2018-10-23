@@ -1,5 +1,5 @@
 import "jest";
-import { joinIssues } from "../../src/lib/github/utils";
+import { diffIssues } from "../../src/lib/github/utils";
 
 const fromSource = [
     {
@@ -8,7 +8,7 @@ const fromSource = [
       "title": "FIXMEs from source code"
     },
     {
-      "body": `-[ ]README.md: 12 @aleku399 look into why this was causing bars not to show
+      "body": `-[ ]README.md: 12
   -[ ]README.md: 11 test
   -[ ]README.md: 40 check
   -[ ]README.md: 40 see`,
@@ -17,7 +17,7 @@ const fromSource = [
   ];
 const fromGithub = [
     {
-      "body": `-[ ]README.md: 12 @aleku399 look into why this was causing bars not to show
+      "body": `-[ ]README.md: 12
   -[ ]README.md: 11 test
   -[ ]README.md: 10 niggas in paris
   -[ ]README.md: 14 whistle`,
@@ -32,8 +32,8 @@ const fromGithub = [
   ];
 
 describe("all issues data tests", () => {
-    it.only("should return blob data",  () => {
-      const _data = joinIssues(fromSource, fromGithub);
+    it("should return blob data",  () => {
+      const _data = diffIssues(fromSource, fromGithub);
       expect(_data).toMatchSnapshot();
     }, 10000);
 });

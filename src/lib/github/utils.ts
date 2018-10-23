@@ -14,6 +14,7 @@ export interface Issue {
   title: string;
   body: string;
 }
+
 export function getBasicRepoProps (context: Context): RepoProps {
   const owner = context.payload.repository.owner.login;
   const repo = context.payload.repository.name;
@@ -21,18 +22,23 @@ export function getBasicRepoProps (context: Context): RepoProps {
 
   return fields;
 }
-export function joinIssues (repo: Issue[], github: Issue[]): Issue[] {
+
+// returns issue diff. Diff pre-existing issues on github with new ones
+// from source code
+export function diffIssues (repo: Issue[], github: Issue[]): Issue[] {
   const groupedObj = R.groupBy(obj => obj.title, repo);
   return Object.keys(groupedObj).map((key) => {
+
     const bodyArr = github.map(old => {
       if (key === old.title) {
         const newIssueArr = groupedObj[key][0].body.split(`\n`);
         const oldIssueArr = old.body.split(`\n`);
-        const filteredArr = oldIssueArr.filter(iss => newIssueArr.indexOf(iss) === -1);
-        // console.log(`check: ${filteredArr}`);
-        return [...newIssueArr, ...filteredArr];
+        return newIssueArr.filter(iss => !oldIssueArr.includes(iss));
       }
-    });
-    return {title: key, body: bodyArr.join(`\n`)};
+      return null;
+    })
+    .filter(body => body !== null );
+
+    return {title: key, body: R.flatten(bodyArr).join(`\n`)};
   });
 }

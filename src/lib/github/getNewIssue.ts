@@ -1,7 +1,11 @@
-import formattedIssueComment from "./issue-presenter";
+/**
+ * Diffs existing issues on github with new issues from source code
+ * and returns the diff that includes issues that are not on github yet
+ */
+import formattedIssueComment from "./issuePresenter";
 import { Context } from "./types";
 import { RepoIssue } from "../parser";
-import { joinIssues, Issue } from "./utils";
+import { diffIssues, Issue } from "./utils";
 
 async function getAllIssues(context: Context): Promise<Issue[]> {
   const octokit = context.github;
@@ -12,5 +16,5 @@ async function getAllIssues(context: Context): Promise<Issue[]> {
 export default async function getNewIssuesFromSource(context: Context, data: RepoIssue[]): Promise<Issue[]> {
   const oldIssues: Issue[] = await getAllIssues(context);
   const newIssues: Issue[] = formattedIssueComment(data);
-  return joinIssues(newIssues, oldIssues);
+  return diffIssues(newIssues, oldIssues);
 }
