@@ -56,7 +56,6 @@
     "no-trailing-whitespace": true,
     "no-null-keyword": false,
     "prefer-const": true,
-    "jsdoc-format": true,
-    "no-unreachable": true
+    "jsdoc-format": true
   }
 }

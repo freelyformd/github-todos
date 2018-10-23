@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`all issues data tests should return blob data 1`] = `
+Array [
+  Object {
+    "body": "      -[ ]README.md: 14  see u",
+    "title": "FIXMEs from source code",
+  },
+  Object {
+    "body": "  -[ ]README.md: 40 check
+  -[ ]README.md: 40 see",
+    "title": "TODOs from source code",
+  },
+]
+`;

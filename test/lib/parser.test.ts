@@ -26,7 +26,7 @@ const data = {
 };
 
 describe("parsed data tests", () => {
-    it.only("should return modified parsed data", () => {
+    it("should return modified parsed data", () => {
       const _data = parseData(data);
       expect(_data).toMatchSnapshot();
     });
