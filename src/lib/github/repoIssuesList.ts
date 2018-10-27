@@ -17,8 +17,8 @@ export async function getAllRepoIssues(context: any): Promise<GHIssue[]> {
   const { owner, repo } = getBasicRepoProps(context);
   const base = "https://api.github.com/repos";
   const url = `${base}/${owner}/${repo}/issues`;
-  // TODO: need to pass authentication token so as to be able to get issues for private repos
-  // TODO: to query only open issues and created by bot
+  // TODO: Need to pass authentication token so as to be able to get issues for private repos
+  // TODO: To query only open issues and created by bot
   const res = await fetch(url);
   const data: RawGHIssue[] = await res.json();
   const issues = data.map(obj => ({
