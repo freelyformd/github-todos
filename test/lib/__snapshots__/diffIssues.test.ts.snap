@@ -1,13 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`all issues data tests should return blob data 1`] = `
+exports[`all issues data tests when both github & source issues exist should return blob data 1`] = `
 Array [
   Object {
     "body": "      -[ ]README.md: 14  see u",
     "title": "FIXMEs from source code",
   },
   Object {
-    "body": "  -[ ]README.md: 40 check
+    "body": "  -[ ]README.md: 11 test
+  -[ ]README.md: 40 check
+  -[ ]README.md: 40 see",
+    "title": "TODOs from source code",
+  },
+]
+`;
+
+exports[`all issues data tests when only source issues exist should return blob data 1`] = `
+Array [
+  Object {
+    "body": "-[ ]README.md: 14 alex testing 1 on the 2s
+      -[ ]README.md: 14  see u",
+    "title": "FIXMEs from source code",
+  },
+  Object {
+    "body": "-[ ]README.md: 12
+  -[ ]README.md: 11 test
+  -[ ]README.md: 40 check
   -[ ]README.md: 40 see",
     "title": "TODOs from source code",
   },

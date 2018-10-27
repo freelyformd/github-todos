@@ -3,12 +3,12 @@
 exports[`parsed data tests should return modified parsed data 1`] = `
 Array [
   Object {
-    "body": "-[ ]README.md: 12 @aleku399 look into why this was causing bars not to show
--[ ]README.md: 11 test",
+    "body": "- [ ] [README.md](https://github.com/epicallan/repo/#L12) : @aleku399 look into why this was causing bars not to show
+- [ ] [README.md](https://github.com/epicallan/repo/#L11) : test",
     "title": "TODOs from source code",
   },
   Object {
-    "body": "-[ ]README.md: 14 alex testing 1 on the 2s",
+    "body": "- [ ] [README.md](https://github.com/epicallan/repo/#L14) : alex testing 1 on the 2s",
     "title": "FIXMEs from source code",
   },
 ]
