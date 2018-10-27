@@ -1,5 +1,5 @@
 /**
- * API function to add comments to existing bot created issues.
+ * API function that add comments to existing bot created issues or to new issues
  */
 import { find } from "ramda";
 import { getBasicRepoProps } from "./utils";
