@@ -1,5 +1,5 @@
 import "jest";
-import getFilesBlob from "../../src/lib/github/getFilesBlob";
+import getFilesContent from "../../src/lib/github/getFilesContent";
 
 const list = [{
   name: "readme.md",
@@ -9,7 +9,7 @@ const list = [{
 
 describe("blob data tests", () => {
     it.skip("should return blob data", async () => {
-      const data = await getFilesBlob(list);
+      const data = await getFilesContent(list);
       expect(data).toMatchSnapshot();
     }, 10000);
 });

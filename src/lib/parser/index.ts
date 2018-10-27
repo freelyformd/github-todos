@@ -4,7 +4,7 @@
  */
 import extract from "esprima-extract-comments";
 
-import { Blob } from "../github/getFilesBlob";
+import { FilesContent } from "../github/getFilesContent";
 
 type KeyWord = "TODO"  | "FIXME";
 
@@ -35,7 +35,7 @@ const replaceWord = (str: string): string => {
     return str.replace(regex, "").trim();
 };
 
-function parseData (data: Blob): RepoIssue[] {
+function parseData (data: FilesContent): RepoIssue[] {
     const extractedFile: ExtractedBlob[] = extract(data.content);
     return extractedFile
     .map( (obj: ExtractedBlob) => ({
