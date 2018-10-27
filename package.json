@@ -1,12 +1,12 @@
 {
-  "name": "probot",
+  "name": "probot-todo",
   "version": "1.0.0",
-  "description": "A Probot app",
-  "author": "akilihub <info@akilihub.com>",
+  "description": "TODO & FIXME issue reporter",
+  "author": "freelyformd <info@freelyformd.com>",
   "license": "ISC",
-  "repository": "https://github.com/lubegasimon/probot.git",
-  "homepage": "https://github.com/lubegasimon/probot",
-  "bugs": "https://github.com/lubegasimon/probot/issues",
+  "repository": "https://github.com/freelyformd/github-todos",
+  "homepage": "https://github.com/apps/probot-todo",
+  "bugs": "https://github.com/freelyformd/github-todos/issues",
   "keywords": [
     "probot",
     "github",
@@ -18,7 +18,7 @@
     "patch": "release-it -i patch -n",
     "feature": "release-it -i minor -n",
     "breaking": "release-it -i major -n",
-    "start": "npm run build && probot run ./dist/main.js",
+    "start": "npm run build && probot run ./dist/app/main.js",
     "lint": "tslint -c tslint.json 'src/**/*.ts' 'test/**/*.ts'",
     "test": "jest",
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"

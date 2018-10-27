@@ -5,6 +5,7 @@ const data = {
     "type": "file",
     "encoding": "base64",
     "size": 5362,
+    "url": "http://someurl",
     "name": "README.md",
     "path": "README.md",
     "content": `const barChart = () => {
@@ -27,8 +28,8 @@ const data = {
 
 describe("parsed data tests", () => {
     it("should return modified parsed data", () => {
-      const _data = parseData(data);
-      expect(_data).toMatchSnapshot();
+      const results = parseData(data);
+      expect(results).toMatchSnapshot();
     });
 });
 

@@ -4,6 +4,7 @@
  */
 import extract from "esprima-extract-comments";
 
+import { FilesContent } from "../github/getFilesContent";
 
 type KeyWord = "TODO"  | "FIXME";
 
@@ -14,13 +15,7 @@ export interface RepoIssue {
    lineNumber: number;
    keyWord: KeyWord;
    fileName: string;
-}
-
-export interface GithuBlob {
-    type: string;
-    content: string;
-    path: string;
-    name: string;
+   url: string;
 }
 
 interface ExtractedBlob {
@@ -40,14 +35,15 @@ const replaceWord = (str: string): string => {
     return str.replace(regex, "").trim();
 };
 
-function parseData (data: GithuBlob): RepoIssue[] {
+function parseData (data: FilesContent): RepoIssue[] {
     const extractedFile: ExtractedBlob[] = extract(data.content);
     return extractedFile
     .map( (obj: ExtractedBlob) => ({
         commentText: replaceWord(obj.value),
         lineNumber: obj.loc.end.line,
         keyWord: findWord(obj.value) as KeyWord,
-        fileName: data.name
+        fileName: data.name,
+        url: data.url
     }))
     .filter(obj => keyWords.includes(obj.keyWord));
 }

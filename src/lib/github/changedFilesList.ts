@@ -6,7 +6,8 @@ import { getBasicRepoProps } from "./utils";
 
 export interface ModifiedFile {
   name: string;
-  url: string;
+  downloadUrl: string;
+  htmlUrl: string;
 }
 
 export default async function getChangedFiles(context: Context): Promise<ModifiedFile[]> {
@@ -18,6 +19,12 @@ export default async function getChangedFiles(context: Context): Promise<Modifie
     repo,
     sha
   };
-  const result = await octokit.repos.getCommit( fields);
-  return result.files.map(file => ({name: file.filename, url: file.blob_url}));
+  const result = await octokit.repos.getCommit(fields);
+  const modifiedFiles: Array<Promise<ModifiedFile>> =
+    result.data.files.map(async(file) => {
+      const name = file.filename;
+      const content = await octokit.repos.getContent({owner, repo, path: name});
+      return { name, htmlUrl: content.data.html_url, downloadUrl: content.data.download_url};
+    });
+  return Promise.all(modifiedFiles);
 }
