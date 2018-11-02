@@ -8,6 +8,7 @@ export interface ModifiedFile {
   name: string;
   downloadUrl: string;
   htmlUrl: string;
+  author: string;
 }
 
 export default async function getChangedFiles(context: Context): Promise<ModifiedFile[]> {
@@ -20,11 +21,17 @@ export default async function getChangedFiles(context: Context): Promise<Modifie
     sha
   };
   const result = await octokit.repos.getCommit(fields);
+  const author = result.data.committer.login;
   const modifiedFiles: Array<Promise<ModifiedFile>> =
     result.data.files.map(async(file) => {
       const name = file.filename;
       const content = await octokit.repos.getContent({owner, repo, path: name});
-      return { name, htmlUrl: content.data.html_url, downloadUrl: content.data.download_url};
+      return {
+        name,
+        htmlUrl: content.data.html_url,
+        downloadUrl: content.data.download_url,
+        author
+      };
     });
   return Promise.all(modifiedFiles);
 }

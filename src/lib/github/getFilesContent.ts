@@ -4,6 +4,7 @@ import { ModifiedFile } from "./changedFilesList";
 export interface FilesContent {
     content: string;
     name: string;
+    author: string;
     url: string;
 }
 
@@ -13,6 +14,7 @@ const getFilesContent = async (arrList: ModifiedFile[]): Promise<FilesContent[]>
     const textBlob = await res.text();
     return ({
       content: textBlob,
+      author: file.author,
       name: file.name,
       url: file.htmlUrl
     });

@@ -9,6 +9,7 @@ export interface Context {
 export interface Issue {
   title: string;
   body: string;
+  authors: string[];
 }
 
 export interface RepoProps {
