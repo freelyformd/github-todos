@@ -5,6 +5,7 @@ import { groupBy, flatten, prop } from "ramda";
 
 import { Context, Issue, RepoProps, GHIssue } from "./types";
 import { RepoIssue } from "../parser";
+import { ModifiedFile } from "./getFilesOnInstall";
 
 
 export function getBasicRepoProps (context: Context): RepoProps {
@@ -43,4 +44,13 @@ export function mergeFileRepoIssues(repoIssues: RepoIssue[][]): RepoIssue[] {
   const issueGroupsList: RepoIssue[][] =
       Object.keys(groupedByIssueType).map(key => groupedByIssueType[key]);
   return flatten<RepoIssue>(issueGroupsList);
+}
+
+export function getModifiedFiles(octokit, array, owner, repo): Promise<ModifiedFile[]> {
+  const modifiedFiles: Array<Promise<ModifiedFile>> = array.data.files.map(async(file) => {
+  const name = file.filename;
+  const content = await octokit.repos.getContent({owner, repo, path: name});
+  return { name, htmlUrl: content.data.html_url, downloadUrl: content.data.download_url};
+});
+  return Promise.all(modifiedFiles);
 }
