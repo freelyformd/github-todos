@@ -7,21 +7,25 @@ const data: RepoIssue[] = [
       "fileName": "README.md",
       "keyWord": "TODO",
       "lineNumber": 12,
-      "url": "https://github.com/epicallan/repo/"
+      "url": "https://github.com/epicallan/repo/",
+      "commentAuthor": "@aleku399",
+
     },
     {
       "commentText": "alex testing 1 on the 2s",
       "fileName": "README.md",
       "keyWord": "FIXME",
       "lineNumber": 14,
-      "url": "https://github.com/epicallan/repo/"
+      "url": "https://github.com/epicallan/repo/",
+      "commentAuthor": "@epicallan",
     },
     {
       "commentText": "test",
       "fileName": "README.md",
       "keyWord": "TODO",
       "lineNumber": 11,
-      "url": "https://github.com/epicallan/repo/"
+      "url": "https://github.com/epicallan/repo/",
+      "commentAuthor": "@lubegasimon",
     }
   ];
 describe("parsed data tests", () => {
