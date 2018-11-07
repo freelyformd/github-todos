@@ -12,11 +12,15 @@ export interface ModifiedFile {
 
 export default async function getFiles(context: Context): Promise<ModifiedFile[]> {
   const { owner, repo } = getBasicRepoProps (context);
+  const sha = context.payload.head_commit.id;
   const octokit = context.github;
-  const committedArray = await octokit.repos.getCommits({owner, repo});
-  const changedFilesArray = committedArray.map( async (obj) => {
-    const sha = obj.sha;
-    return await octokit.repos.getCommit({owner, repo, sha});
+  const treeObject = await octokit.gitdata.getTree({owner, repo, sha, recursive: 5});
+  const changedFilesArray = treeObject.tree.map( async (obj) => {
+    if (obj.type !== "tree") {
+      return obj.path;
+  } else {
+    return await octokit.gitdata.getTree({owner, repo, sha: obj.sha});
+  }
   });
   // not sure if we shall av a return type if we use map Promise<ModifiedFile[][]>
   // we might return something like that

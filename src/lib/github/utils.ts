@@ -54,3 +54,15 @@ export function getModifiedFiles(octokit, array, owner, repo): Promise<ModifiedF
 });
   return Promise.all(modifiedFiles);
 }
+
+export async function getfileNames(octokit, owner, repo, sha) {
+ const objFiles = await octokit.gitdata.getTree({owner, repo, sha});
+ if (objFiles) return;
+ return objFiles.tree.map( async (obj) => {
+  if (obj.type !== "tree") {
+    return {path: obj.path, url: obj.url};
+      } else {
+    return await getfileNames(octokit, owner, repo, obj.sha);
+    }
+  });
+}
