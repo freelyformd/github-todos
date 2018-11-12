@@ -5,7 +5,7 @@ import { groupBy, flatten, prop } from "ramda";
 
 import { Context, Issue, RepoProps, GHIssue } from "./types";
 import { RepoIssue } from "../parser";
-import { ModifiedFile } from "./getFilesOnInstall";
+import { ModifiedFile } from "./changedFilesList";
 
 
 export function getBasicRepoProps (context: Context): RepoProps {
