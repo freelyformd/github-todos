@@ -2,7 +2,7 @@
  * Gets files that have changed during a commit
  */
 import { Context } from "./types";
-import { getBasicRepoProps, getModifiedFiles } from "./utils";
+import { getBasicRepoProps } from "./utils";
 
 export interface ModifiedFile {
   name: string;
