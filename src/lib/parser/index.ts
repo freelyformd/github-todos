@@ -2,6 +2,7 @@
  * uses an AST parser to analyse commits
  * currently supports ts and js files
  */
+
 import extract from "esprima-extract-comments";
 
 import { FilesContent } from "../github/getFilesContent";
@@ -16,6 +17,7 @@ export interface RepoIssue {
    keyWord: KeyWord;
    fileName: string;
    url: string;
+   commentAuthor: string;
 }
 
 interface ExtractedBlob {
@@ -43,7 +45,8 @@ function parseData (data: FilesContent): RepoIssue[] {
         lineNumber: obj.loc.end.line,
         keyWord: findWord(obj.value) as KeyWord,
         fileName: data.name,
-        url: data.url
+        url: data.url,
+        commentAuthor: data.author
     }))
     .filter(obj => keyWords.includes(obj.keyWord));
 }

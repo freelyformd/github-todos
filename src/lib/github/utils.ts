@@ -17,8 +17,9 @@ export function getBasicRepoProps (context: Context): RepoProps {
 
 // returns issue diff. Diff pre-existing issues on github with new ones
 // from source code
+// TODO: simplify code and break into smaller independent functions
 export function diffIssues (repo: Issue[], githubIssues: GHIssue[]): Issue[] {
-  const repoTitleGroup = groupBy(obj => obj.title, repo);
+  const repoTitleGroup: {[key: string]: any[]} = groupBy(obj => obj.title, repo);
   return Object.keys(repoTitleGroup).map((repoIssueTitle) => {
 
     const diffedBody = githubIssues.map(ghIssue => {
@@ -34,7 +35,7 @@ export function diffIssues (repo: Issue[], githubIssues: GHIssue[]): Issue[] {
       ? flatten(diffedBody).join(`\n`)
       : repoTitleGroup[repoIssueTitle][0].body;
 
-    return {title: repoIssueTitle, body};
+    return {title: repoIssueTitle, body, authors: repoTitleGroup[repoIssueTitle][0].authors};
   });
 }
 

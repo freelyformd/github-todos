@@ -3,8 +3,9 @@ import getFilesContent from "../../src/lib/github/getFilesContent";
 
 const list = [{
   name: "readme.md",
+  author: "@epicallan",
   downloadUrl: "https://github.com/",
-  htmlUrl: "https://github.com/"
+  htmlUrl: "https://github.com/",
 }];
 
 describe("blob data tests", () => {
