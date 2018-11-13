@@ -22,3 +22,8 @@ export interface GHIssue {
   number: number;
   title: string;
 }
+
+export interface File {
+  path: string;
+  url: string;
+}

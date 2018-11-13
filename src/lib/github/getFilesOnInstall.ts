@@ -1,13 +1,8 @@
 /**
  * Gets files that have changed in the last  commits
  */
-import { Context } from "./types";
+import { Context, File } from "./types";
 import { getBasicRepoProps,  getfileNames } from "./utils";
-
-export interface File {
-  path: string;
-  url: string;
-}
 
 export default async function getFiles(context: Context): Promise<File[]> {
   const { owner, repo } = getBasicRepoProps (context);

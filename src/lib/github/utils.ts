@@ -3,7 +3,7 @@
  */
 import { groupBy, flatten, prop } from "ramda";
 
-import { Context, Issue, RepoProps, GHIssue } from "./types";
+import { Context, Issue, RepoProps, GHIssue, File } from "./types";
 import { RepoIssue } from "../parser";
 import { ModifiedFile } from "./changedFilesList";
 
@@ -56,9 +56,9 @@ export function getModifiedFiles(octokit, array, owner, repo): Promise<ModifiedF
   return Promise.all(modifiedFiles);
 }
 
-export async function getfileNames(octokit, owner, repo, sha) {
+export async function getfileNames(octokit, owner: string, repo: string, sha: string): Promise<File> {
  const objFiles = await octokit.gitdata.getTree({owner, repo, sha});
- if (objFiles) return;
+ if (!objFiles) return;
  return objFiles.tree.map( async (obj) => {
   if (obj.type !== "tree") {
     return {path: obj.path, url: obj.url};
