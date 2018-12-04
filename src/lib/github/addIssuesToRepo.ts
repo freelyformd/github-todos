@@ -7,6 +7,8 @@ import { getBasicRepoProps } from "./utils";
 import { Context, Issue } from "./types";
 import { getAllRepoIssues } from "./repoIssuesList";
 
+export const label = ["GH-TODO-BOT"];
+
 export default async function addIssuesToRepo (context: Context, newIssues: Issue[]): Promise<void> {
   const octokit = context.github;
   const { owner, repo } = getBasicRepoProps (context);
@@ -18,7 +20,7 @@ export default async function addIssuesToRepo (context: Context, newIssues: Issu
       repo,
       body,
       title,
-      labels: ["GH-TODO-BOT"],
+      labels: label,
       ...(currentGHIssue ? { number: currentGHIssue.number } : {})
     };
     return currentGHIssue
