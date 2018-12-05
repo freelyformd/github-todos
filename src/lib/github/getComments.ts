@@ -9,7 +9,7 @@ export interface GhIssueComment {
   assignee: string;
 }
 
-export default async function getCheckedComments (context: Context): Promise<GhIssueComment[]> {
+export default async function getAllComments (context: Context): Promise<GhIssueComment[]> {
   const octokit = context.github;
   const { owner, repo } = getBasicRepoProps (context);
   const fields = {
@@ -18,8 +18,16 @@ export default async function getCheckedComments (context: Context): Promise<GhI
       labels: label,
     };
   const arrayComments = await octokit.issues.list(fields);
-  return arrayComments.map(obj => ({
-    comment: obj.body,
-    assignee: obj.assignee.login
-  }));
+  return arrayComments.map(obj => {
+    const commentArray = obj.body.split(`\n`);
+    return commentArray.map(comment => {
+        const reg = /[\[\]-]+/g;
+        const individualCommentArr = comment.split(`:`);
+        return {
+          file: individualCommentArr[0].replace(/\s/g, "").replace(reg, ""),
+          comment: individualCommentArr[1],
+          assignee: obj.assignee.login
+          };
+    });
+  });
 }

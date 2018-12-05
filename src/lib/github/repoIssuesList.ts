@@ -37,7 +37,9 @@ function issuesWithComments(
   octokit: any
 ): Promise<GHIssue[]> {
   const ghIssuesWithComments = ghIssues.map(async (issue) => {
-    const commentsPayload = await octokit.issues.getComments({owner, repo, number: issue.number});
+    // Don't think octokit.issues.getComments uses issue number
+    // it takes in comment_id @/repos/:owner/:repo/issues/comments/:comment_id
+    const commentsPayload = await octokit.issues.listComments({owner, repo, number: issue.number});
     const comments = flatten<string>(commentsPayload.data.map(obj => obj.body.split("\n")));
     return {title: issue.title, comments, number: issue.number};
   });
