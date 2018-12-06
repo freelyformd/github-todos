@@ -31,6 +31,6 @@
       "dist"
     ],
   "include": [
-    "src/**/*"
+    "src/**/*", "test/lib/formatStringAray.test.ts"
   ]
 }

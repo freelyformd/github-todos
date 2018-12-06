@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should return an array of file and comment should return array 1`] = `
+Array [
+  "app.js",
+  "testingthebot",
+]
+`;

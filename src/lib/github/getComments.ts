@@ -1,4 +1,4 @@
-import { getBasicRepoProps } from "./utils";
+import { getBasicRepoProps, formatStringArray } from "./utils";
 
 import { Context } from "./types";
 import { label } from "./addIssuesToRepo";
@@ -19,15 +19,15 @@ export default async function getAllComments (context: Context): Promise<GhIssue
     };
   const arrayComments = await octokit.issues.list(fields);
   return arrayComments.map(obj => {
-    const commentArray = obj.body.split(`\n`);
-    return commentArray.map(comment => {
-        const reg = /[\[\]-]+/g;
-        const individualCommentArr = comment.split(`:`);
+    const commentArray: string[] = obj.body.split(`\n`);
+    return commentArray.map( (comment: string) => {
+        const individualCommentArr = formatStringArray(comment);
         return {
-          file: individualCommentArr[0].replace(/\s/g, "").replace(reg, ""),
+          file: individualCommentArr[0],
           comment: individualCommentArr[1],
           assignee: obj.assignee.login
           };
     });
   });
 }
+

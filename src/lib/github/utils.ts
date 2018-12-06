@@ -44,3 +44,7 @@ export function mergeFileRepoIssues(repoIssues: RepoIssue[][]): RepoIssue[] {
       Object.keys(groupedByIssueType).map(key => groupedByIssueType[key]);
   return flatten<RepoIssue>(issueGroupsList);
 }
+
+export function formatStringArray (strng: String): String[] {
+  return strng.replace(/\s/g, "").replace(/[\[\]-]+/g, "").replace(/\(.*\)/, "").split(":");
+}
