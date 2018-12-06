@@ -1,15 +1,8 @@
 /**
  * Gets files that have changed during a commit
  */
-import { Context } from "./types";
+import { Context, ModifiedFile } from "./types";
 import { getBasicRepoProps } from "./utils";
-
-export interface ModifiedFile {
-  name: string;
-  downloadUrl: string;
-  htmlUrl: string;
-  author: string;
-}
 
 export default async function getChangedFiles(context: Context): Promise<ModifiedFile[]> {
   const { owner, repo } = getBasicRepoProps (context);

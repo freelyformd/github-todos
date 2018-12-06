@@ -23,7 +23,14 @@ export interface GHIssue {
   title: string;
 }
 
+export interface ModifiedFile {
+  name: string;
+  downloadUrl: string;
+  htmlUrl: string;
+  author: string;
+}
+
 export interface File {
-  path: string;
-  url: string;
+  name: string;
+  downloadUrl: string;
 }
