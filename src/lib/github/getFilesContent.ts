@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import { ModifiedFile } from "./changedFilesList";
+import { ModifiedFile } from "./types";
 
 export interface FilesContent {
     content: string;
