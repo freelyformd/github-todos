@@ -10,9 +10,9 @@ export default async function removeIssue (context: Context, issueList: RawGHIss
     const changedFiles = await getChangedFiles(context);
     const filesContent = await getFilesContent(changedFiles);
 
-    comments.forEach(issueComment => {
+    comments.forEach(async issueComment => {
         const issueCommentIndex = comments.indexOf(issueComment);
-        return filesContent.forEach(fileContent => {
+        return filesContent.forEach(async fileContent => {
             fileContent.content.includes(issueComment) || !issueComment.includes("[x]")
             ? issueComment === comments[comments.length - 1]
                 ? issueList
