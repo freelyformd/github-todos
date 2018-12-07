@@ -8,7 +8,7 @@ import { flatten } from "ramda";
 
 
 export interface RawGHIssue {
-  comments: number;
+  comments: string;
   number: number;
   title: string;
 }
