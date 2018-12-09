@@ -18,11 +18,11 @@ export default async function getChangedFiles(context: Context): Promise<Modifie
   const modifiedFiles: Array<Promise<ModifiedFile>> =
     result.data.files.map(async(file) => {
       const name = file.filename;
-      const content = await octokit.repos.getContent({owner, repo, path: name});
+      const content = await octokit.repos.getContents({owner, repo, path: name});
       return {
         name,
-        htmlUrl: content.data.html_url,
-        downloadUrl: content.data.download_url,
+        htmlUrl: content.html_url,
+        downloadUrl: content.download_url,
         author
       };
     });

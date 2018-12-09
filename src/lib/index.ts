@@ -28,12 +28,11 @@ export async function addRepoCommentsToGH(context: Context): Promise<void> {
 }
 
 export async function addCommentsToGHonInstall(context: Context): Promise<void> {
-    // get changed files on a git push
+    // get changed files on install
     const changedFiles = await getFiles(context);
     // get file data
     const filesContent: FilesContent[] = await getFilesContent(changedFiles); // error handling
-    // FIXME: this doesnot work
-    // Just ignore it
+
     const filesRepoIssues = filesContent.map(parseData);
     // merge into a single set of FIXME and TODO issues
     const repoIssues = mergeFileRepoIssues(filesRepoIssues);
