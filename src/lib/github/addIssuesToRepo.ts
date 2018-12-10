@@ -20,7 +20,7 @@ export default async function addIssuesToRepo (context: Context, newIssues: Issu
       repo,
       body,
       title,
-      labels: labels,
+      labels,
       ...(currentGHIssue ? { number: currentGHIssue.number } : {})
     };
     return currentGHIssue

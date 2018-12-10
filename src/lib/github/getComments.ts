@@ -11,8 +11,9 @@ export interface GhIssueComment {
 
 export function getIssueCommentDetails (strng: String): GhIssueComment {
   const arr = strng.replace(/\s/g, "")
-  .replace(/[\[\]-]+/g, "")
-  .replace(/\(.*\)/, "").split(":");
+    .replace(/[\[\]-]+/g, "")
+    .replace(/\(.*\)/, "")
+    .split(":");
   return {
     file: arr[0],
     comment: arr[1],
@@ -26,7 +27,7 @@ export default async function getAllComments (context: Context): Promise<GhIssue
   const fields = {
       owner,
       repo,
-      labels: labels,
+      labels,
     };
   const arrayComments = await octokit.issues.list(fields);
   return arrayComments.map(obj => {
