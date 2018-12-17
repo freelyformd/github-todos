@@ -27,7 +27,6 @@ export default async function issueCommentToEdit (context: Context, issueComment
     const octokit = context.github;
     const { owner, repo } = getBasicRepoProps(context);
     issueComment.map(async (comment) => {
-        // const issueId = await octokit.issues.get({owner, repo, number: comment.GhIssueId});
         const commentId = await octokit.issues.getComment({owner, repo, comment_id: comment.GhCommentId});
         if (comment.action === Delete) {
             return await octokit.issues.deleteComment({owner, repo, comment_id: commentId});

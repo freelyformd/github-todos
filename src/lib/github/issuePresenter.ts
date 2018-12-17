@@ -13,7 +13,7 @@ interface IssueWithComments {
 }
 
 const createIssueWithComments = (data: RepoIssue[]): IssueWithComments[] => {
-  const groupedObj  = R.groupBy(obj => obj.keyWord, data);
+  const groupedObj = R.groupBy(obj => obj.keyWord, data);
 
   return Object.keys(groupedObj).map(key => {
     const singleArrObj: RepoIssue[] = groupedObj[key];
