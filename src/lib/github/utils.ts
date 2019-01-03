@@ -6,7 +6,6 @@ import { groupBy, flatten, prop } from "ramda";
 import { Context, Issue, RepoProps, GHIssue } from "./types";
 import { RepoIssue } from "../parser";
 
-
 export function getBasicRepoProps (context: Context): RepoProps {
   const owner = context.payload.repository.owner.login;
   const repo = context.payload.repository.name;
@@ -45,3 +44,4 @@ export function mergeFileRepoIssues(repoIssues: RepoIssue[][]): RepoIssue[] {
       Object.keys(groupedByIssueType).map(key => groupedByIssueType[key]);
   return flatten<RepoIssue>(issueGroupsList);
 }
+
