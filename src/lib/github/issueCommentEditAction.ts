@@ -18,21 +18,47 @@ interface CommentEdit {
   GhIssueId: number;
   GhCommentId: number;
   action: CommentEditAction;
-  commentsText: string[];
+  commentsText: string;
 }
 
 type CommentsEdit = CommentEdit[];
 
-export default async function issueCommentToEdit (context: Context, issueComment: CommentsEdit): Promise<void> {
-    const octokit = context.github;
-    const { owner, repo } = getBasicRepoProps(context);
-    issueComment.map(async (comment) => {
-        const commentId = await octokit.issues.getComment({owner, repo, comment_id: comment.GhCommentId});
+export default async function issueCommentToEdit (
+      context: Context,
+      issueComment: CommentsEdit
+    ): Promise<void> {
+
+      const octokit = context.github;
+      const { owner, repo } = getBasicRepoProps(context);
+
+      issueComment.map(async (comment) => {
+        const commentId = await octokit
+          .issues
+          .getComment({
+              owner,
+              repo,
+              comment_id: comment.GhCommentId
+            });
+
         if (comment.action === Delete) {
-            return await octokit.issues.deleteComment({owner, repo, comment_id: commentId});
+            return await octokit
+              .issues
+              .deleteComment({
+                  owner,
+                  repo,
+                  comment_id: commentId
+                });
         }
+
         if (comment.action === Edit) {
-            return await octokit.issues.updateComment({owner, repo, comment_id: commentId, body: comment.commentsText});
+            return await octokit
+              .issues
+              .updateComment({
+                  owner,
+                  repo,
+                  comment_id: commentId,
+                  body: comment.commentsText
+                });
         }
     });
 }

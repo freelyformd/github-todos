@@ -11,19 +11,30 @@ import getFilesContent from "./getFilesContent";
 import { RawGHIssue } from "./repoIssuesList";
 import { Context } from "./types";
 
-export default async function removeIssue (context: Context, issueList: RawGHIssue): Promise<void> {
-    const comments = issueList.comments.split("\n");
-    const changedFiles = await getChangedFiles(context);
-    const filesContent = await getFilesContent(changedFiles);
+export default async function removeIssue (
+      context: Context,
+      issueList: RawGHIssue
+    ): Promise<void> {
 
-    comments.forEach(async issueComment => {
+      const comments = issueList.comments.split("\n");
+      const changedFiles = await getChangedFiles(context);
+      const filesContent = await getFilesContent(changedFiles);
+
+      comments.forEach(async issueComment => {
         const issueCommentsToEdit = [];
         return filesContent.forEach(async fileContent => {
-            fileContent.content.includes(issueComment) || !issueComment.includes("[x]")
-            ? issueComment === comments[comments.length - 1]
-                ? issueList
-                : comments.concat([issueComment]).join("\n")
-            : issueCommentsToEdit.push(issueComment);
+
+          if (fileContent.content.includes(issueComment)
+              || !issueComment.includes("[x]")) {
+            return issueComment === comments[comments.length - 1]
+              ? issueList
+              : comments.concat([issueComment]).join("\n");
+          }
+
+          else {
+            return issueCommentsToEdit.push(issueComment);
+          }
+
         });
-    });
-}
+      });
+    }
