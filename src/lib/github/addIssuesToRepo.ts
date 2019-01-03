@@ -14,7 +14,7 @@ export default async function addIssuesToRepo (context: Context, newIssues: Issu
   const { owner, repo } = getBasicRepoProps (context);
   const ghIssues = await getAllRepoIssues(context);
   newIssues.forEach(async ({title, body, authors}) => {
-    const assignees = uniq(authors);
+    // const assignees = uniq(authors);
     const currentGHIssue = find(ghIssue => ghIssue.title === title, ghIssues);
     const fields = {
       owner,
