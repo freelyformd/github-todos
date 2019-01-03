@@ -3,10 +3,18 @@
 exports[`all issues data tests when both github & source issues exist should return blob data 1`] = `
 Array [
   Object {
+    "authors": Array [
+      "@aleku399",
+      "@epicallan",
+    ],
     "body": "      -[ ]README.md: 14  see u",
     "title": "FIXMEs from source code",
   },
   Object {
+    "authors": Array [
+      "@lubegasimon",
+      "@epicallan",
+    ],
     "body": "  -[ ]README.md: 11 test
   -[ ]README.md: 40 check
   -[ ]README.md: 40 see",
@@ -18,11 +26,19 @@ Array [
 exports[`all issues data tests when only source issues exist should return blob data 1`] = `
 Array [
   Object {
+    "authors": Array [
+      "@aleku399",
+      "@epicallan",
+    ],
     "body": "-[ ]README.md: 14 alex testing 1 on the 2s
       -[ ]README.md: 14  see u",
     "title": "FIXMEs from source code",
   },
   Object {
+    "authors": Array [
+      "@lubegasimon",
+      "@epicallan",
+    ],
     "body": "-[ ]README.md: 12
   -[ ]README.md: 11 test
   -[ ]README.md: 40 check
