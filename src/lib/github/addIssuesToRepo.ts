@@ -1,7 +1,7 @@
 /**
  * API function that add comments to existing bot created issues or to new issues
  */
-import { find, uniq } from "ramda";
+import { find } from "ramda";
 import { getBasicRepoProps } from "./utils";
 
 import { Context, Issue } from "./types";
@@ -13,7 +13,7 @@ export default async function addIssuesToRepo (context: Context, newIssues: Issu
   const octokit = context.github;
   const { owner, repo } = getBasicRepoProps (context);
   const ghIssues = await getAllRepoIssues(context);
-  newIssues.forEach(async ({title, body, authors}) => {
+  newIssues.forEach(async ({title, body }) => {
     // const assignees = uniq(authors);
     const currentGHIssue = find(ghIssue => ghIssue.title === title, ghIssues);
     const fields = {
