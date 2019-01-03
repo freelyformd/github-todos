@@ -5,14 +5,16 @@ const fromSource = [
     {
       "body": `-[ ]README.md: 14 alex testing 1 on the 2s
       -[ ]README.md: 14  see u`,
-      "title": "FIXMEs from source code"
+      "title": "FIXMEs from source code",
+      "authors": ["@aleku399", "@epicallan"]
     },
     {
       "body": `-[ ]README.md: 12
   -[ ]README.md: 11 test
   -[ ]README.md: 40 check
   -[ ]README.md: 40 see`,
-      "title": "TODOs from source code"
+      "title": "TODOs from source code",
+      "authors": ["@lubegasimon", "@epicallan"]
     }
   ];
 const fromGithub = [

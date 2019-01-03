@@ -8,6 +8,7 @@ const data = {
     "url": "http://someurl",
     "name": "README.md",
     "path": "README.md",
+    "author": "@aleku399",
     "content": `const barChart = () => {
         const xScale = new Plottable.Scales.Category();
         const yScale = new Plottable.Scales.Linear();

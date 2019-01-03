@@ -17,8 +17,9 @@ export async function addRepoCommentsToGH(context: Context): Promise<void> {
     // get changed files on a git push
     const changedFiles = await getChangedFiles(context);
     // get file data
-    const blobs: FilesContent[] = await getFilesContent(changedFiles); // error handling
-    const filesRepoIssues = blobs.map(parseData);
+    const filesContent: FilesContent[] = await getFilesContent(changedFiles); // error handling
+
+    const filesRepoIssues = filesContent.map(parseData);
     // merge into a single set of FIXME and TODO issues
     const repoIssues = mergeFileRepoIssues(filesRepoIssues);
     const issuesToAddToRepo = await getNewIssuesFromSource(context, repoIssues);
