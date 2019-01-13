@@ -13,10 +13,10 @@ The issues in that file are turned into a check list containing issue descriptio
 
 ```sh
 # Install dependencies
-yarn
+npm install
 
 # Run the bot
-yarn start
+npm run start
 ```
 
 Setting up bot for first time
