@@ -8,12 +8,12 @@ build
 # dependencies
 node_modules
 yarn-error.log
-package-lock.json
+yarn.lock
 npm-debug*
 
 # logs
 *.log
-.env 
+.env
 # coverage
 .nyc_output
 coverage

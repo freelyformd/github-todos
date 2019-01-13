@@ -7,8 +7,8 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:9
-      
+      - image: circleci/node:10
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -26,7 +26,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install
+      - run: npm install
 
       - save_cache:
           paths:
@@ -34,14 +34,14 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Lint
-          command: yarn lint
+          command: npm run lint
       - run:
           name: Building application
-          command: yarn build
+          command: npm run build
       # run tests!
-      - run: 
-          name: Testing application 
-          command: yarn test
-        
- 
+      - run:
+          name: Testing application
+          command: npm test
+
+
 
